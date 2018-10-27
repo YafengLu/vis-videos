@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Recordings from IEEE VIS</title>
+   <meta name="author" content="James Scott-Brown" />
+   <link href="http://feeds.feedburner.com/jamesscottbrown" rel="alternate" title="James Scott-Brown" type="application/atom+xml" />
+
+   <style>
+   h1, h2, h2, h4, h5, h6,
+  .h1, .h2, .h2, .h4, .h5, .h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+.h1, .h2, .j3, h1, h2, h2 {
+margin-top: 20px;
+margin-bottom: 10px
+}
+
+
+.h2, h2 {
+font-size: 30px;  
+}
+
+h1 small, h2 small, h2 small, h4 small, h5 small, h6 small, 
+.h1 small, .h2 small, .h2 small, .h4 small, .h5 small, .h6 small, 
+h1 .small, h2 .small, h2 .small, h4 .small, h5 .small, h6 .small, 
+.h1 .small, .h2 .small, .h2 .small, .h4 .small, .h5 .small, .h6 .small {
+font-weight: normal;
+line-height: 1;
+color: #777;
+}
+
+
+body {
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.42857143;
+color: #333;
+background-color: #fff
+}
+
+.page-header {
+padding-bottom: 9px;
+margin: 40px 0 20px;
+border-bottom: 1px solid #eee
+}
+
+.small {
+font-weight: 400;
+line-height: 1;
+color: #777
+}
+
+small {
+font-size: 65%;
+}
+ 
+.tabulator {
+	border: none;
+}
+ </style>
+
+<link href="https://unpkg.com/tabulator-tables@4.0.5/dist/css/tabulator.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.0.5/dist/js/tabulator.min.js"></script>
+
+
+</head>
+<body>
+	
+
+<div class="site">
+  
+  <div class="page-header"><h1 id="Portfolio">Recordings from IEEE VIS</h1></div>
+
+<p>Recordings from the <a href='http://ieeevis.org'>IEEE VIS</a> conference are posted to <a href='https://vimeo.com/channels/721847'>a Vimeo Channel</a> run by the <a href='http://vgtc.org'>VGTC</a>, but they are hard to find.</p>
+
+<p>This page is intended to provide a more convenient interface. </p>
+
+
+
+<div id="example-table" style="border: none;"></div>
+
+    </div>
+
+
+</body>
+</html>
+
+
+
+<script>
+//create Tabulator on DOM element with id "example-table"
+var table = new Tabulator("#example-table", {
+ 	height: "800px", // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+ 	layout:"fitColumns", //fit columns to width of table (optional)
+ 	columns:[ //Define Table Columns
+	 	{title:"Name", field:"name", headerFilter:true},
+	 	{title:"Year", field:"year", align:"left", width:150, headerFilter:true},
+	 	{title:"Event", field:"event", headerFilter:true},
+	 	{title:"Description", field:"description", headerFilter:true},
+	 	{title: "URL", field:"uri", width:75, formatter:function(cell, formatterParams, onRendered){
+	 			return "<a href='" + cell.getValue() + "'>" + "video </a>";
+	 	}}
+ 	],
+ 	/*
+ 	pagination: {
+ 		"pagination": "true",
+ 		"paginationSize": 250,
+
+ 	},
+ 	*/
+ 	
+ 	/*rowClick:function(e, row){ //trigger an alert message when the row is clicked
+ 		alert("Row " + row.getData().id + " Clicked!!!!");
+ 	},
+ 	*/
+});
+
+
+//load sample data into the table
+table.setData("./vis_videos.json");
+</script>
